@@ -47,13 +47,18 @@ $(document).ready(function () {
         moreGifsDiv.text("Add more gifs, please!");
         $("#gif-section").append(moreGifsDiv);
 
+        // Creates div where gifs will be placed
+        var gifsDiv = $("<div>").addClass("row");
+        gifsDiv.attr("id", "all-gifs");
+        $("#gif-section").append(gifsDiv);
+
         populateGifs(topic);
 
     })
 
     // Adds gifs to gif-section div
     function populateGifs(topic) {
-        
+
         // creates url for query using topic variable
         queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             topic + "&api_key=ospFcerASWWtUhSsEHqEw0pDrhIYBujR&limit=10&offset=" + gifOffset;
@@ -65,8 +70,8 @@ $(document).ready(function () {
                 var results = response.data; // Stores data obtained into results variable
                 console.log(results[0]);
 
-                var gifsDiv = $("<div>").addClass("row");
-                gifsDiv.attr("id", "gifs");
+                var allGifsDiv = $("#all-gifs");
+                console.log(allGifsDiv.text());
 
                 // Iterates through all results
                 for (var i = 0; i < results.length; i++) {
@@ -87,9 +92,9 @@ $(document).ready(function () {
                     gifDiv.append(topicGif);
                     gifDiv.append(p);
 
-                    $(gifsDiv).append(gifDiv);
+                    $("#all-gifs").append(gifDiv);
                 }
-                $("#gif-section").append(gifsDiv);
+                // $("#gif-section").append(gifsDiv);
             });
     }
 
