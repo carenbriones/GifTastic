@@ -1,9 +1,8 @@
 body{
     margin: auto;
-    padding: 10%;
+    padding: 2% 10%;
     background-image: url("../images/full-bloom.png");
 }
-
 
 img{
     max-height: 150px;

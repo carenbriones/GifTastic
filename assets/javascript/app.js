@@ -91,9 +91,9 @@ $(document).ready(function () {
                     gifDiv.append(topicGif);
                     gifDiv.append(p);
 
-                    $("#all-gifs").append(gifDiv);
+                    // Prepends so user can see when additional gifs are added
+                    $("#all-gifs").prepend(gifDiv);
                 }
-                // $("#gif-section").append(gifsDiv);
             });
     }
 

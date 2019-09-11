@@ -23,23 +23,23 @@
 <body>
     <div class="container mx-auto">
         <div class="row">
-            <h1>GifTastic!</h1>
-        </div>
 
-        <div class="row">
-            <p>Click any of the following moods to add related gifs to the page!</p>
-        </div>
-
-        <div class="row" id="buttons"> </div>
-
-        <div class="input-group mb-3 add-topic row">
-            <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button" id="new-topic-button">Add Topic</button>
+            <div class="col-lg-3 mx-md-3" id="left-column">
+                <div class="row"><h1>GifTastic!</h1></div>
+                <div class="row"><p>Click any of the following moods to add related gifs to the page!</p></div>
+                <div class="row" id="buttons"> </div>
+                <div class="input-group mb-3 add-topic row">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="new-topic-button">Add Topic</button>
+                    </div>
+                    <input type="text" class="form-control" id="new-topic">
+                </div>
             </div>
-            <input type="text" class="form-control" id="new-topic">
-        </div>
 
-        <div class="row" id="gif-section">
+            <div class="col-lg-8" id="right-column">
+                <div class="row" id="gif-section">
+                </div>
+            </div>
         </div>
     </div>
 
