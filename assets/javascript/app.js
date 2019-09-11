@@ -9,7 +9,7 @@ $(document).ready(function () {
         for (var i = 0; i < topics.length; i++) {
             // Create button for each topic
             var button = $("<button>").text(topics[i]);
-            button.addClass("topic-button");
+            button.addClass("topic-button btn btn-primary");
 
             // Append button to div on page
             $("#buttons").append(button);
@@ -23,8 +23,11 @@ $(document).ready(function () {
 
         var topic = $(this).text();
         console.log(topic);
-        // creates url for query using topic variable
 
+        // Adds a border to the gif section
+        $("#gif-section").css("border", "1px solid black");
+
+        // creates url for query using topic variable
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             topic + "&api_key=ospFcerASWWtUhSsEHqEw0pDrhIYBujR&limit=10";
         $.ajax({ // AJAX call that sends request to queryURL
@@ -36,7 +39,7 @@ $(document).ready(function () {
                 console.log(results[0]);
                 // Iterates through all results
                 for (var i = 0; i < results.length; i++) {
-                    var gifDiv = $("<div>");
+                    var gifDiv = $("<div>").addClass("gif-item");
 
                     var rating = results[i].rating;
                     var p = $("<p>").text("Rating: " + rating); // Creates new paragraph with rating inside, stores reference to it in p variable
@@ -55,7 +58,6 @@ $(document).ready(function () {
 
                     $("#gif-section").prepend(gifDiv); // Prepends gifDiv to beginning of gifs-appear-here div
                 }
-                
             });
     })
 
@@ -75,7 +77,6 @@ $(document).ready(function () {
             // Change state to still
             $(this).attr("data-state", "still");
         }
-
     })
 
     // On click for add new topic button

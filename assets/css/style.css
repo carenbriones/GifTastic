@@ -1,0 +1,26 @@
+body{
+    margin: auto;
+    padding: 10%
+}
+
+
+img{
+    max-height: 150px;
+}
+
+.gif-item{
+    display: inline-block;
+    padding: 10px;
+}
+
+#buttons{
+    margin-bottom: 10px;
+}
+
+.add-topic{
+    margin-bottom: 10px;
+}
+
+.topic-button{
+    margin: 0px 5px 5px 0px;
+}

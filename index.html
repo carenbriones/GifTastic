@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,41 @@
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
+
     <!-- AJAX -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>GifTastic</title>
 </head>
+
 <body>
-    
-    <h2>Buttons</h2>
-    <div id="buttons">
-    </div>
-    <br>
-    <div class="add-topic">
-        <input type="text" id="new-topic">
-        <button id="new-topic-button">Add Topic</button>
+    <div class="container mx-auto">
+        <div class="row">
+            <h1>GifTastic!</h1>
+        </div>
+        
+        <div class="row">
+            <h5>Buttons</h5>
+        </div>
+
+        <div class="row" id="buttons"> </div>
+
+        <div class="input-group mb-3 add-topic row">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" id="new-topic-button">Add Topic</button>
+            </div>
+            <input type="text" class="form-control" id="new-topic">
+        </div>
+
+        <div class="row" id="gif-section"></div>
     </div>
 
-    <div id="gif-section"></div>
-    
     <script src="assets/javascript/app.js"></script>
 </body>
+
 </html>
