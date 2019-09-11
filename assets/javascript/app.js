@@ -34,8 +34,9 @@ $(document).ready(function () {
 
         $("#gif-section").empty();
 
-        // Adds a border to the gif section
+        // Adds a border and background color to the gif section
         $("#gif-section").css("border", "1px solid black");
+        $("#gif-section").css("background-color", "white");
 
         // Adds instructions to the page for user guidance
         var instructions = $("<p>").text("Click on a still to animate the gif, and click on it again to make it still!");
@@ -70,15 +71,12 @@ $(document).ready(function () {
                 var results = response.data; // Stores data obtained into results variable
                 console.log(results[0]);
 
-                var allGifsDiv = $("#all-gifs");
-                console.log(allGifsDiv.text());
-
                 // Iterates through all results
                 for (var i = 0; i < results.length; i++) {
                     var gifDiv = $("<div>").addClass("gif-item");
 
                     var rating = results[i].rating;
-                    var p = $("<p>").text("Rating: " + rating); // Creates new paragraph with rating inside, stores reference to it in p variable
+                    var p = $("<p>").text("Rating: " + rating);
 
                     // New image element for gif; initially is still 
                     var topicGif = $("<img>");
@@ -86,6 +84,7 @@ $(document).ready(function () {
                     topicGif.attr("data-still", results[i].images.downsized_still.url)
                     topicGif.attr("data-animate", results[i].images.downsized.url);
                     topicGif.attr("data-state", "still");
+                    topicGif.attr("alt", topic + " gif");
                     topicGif.addClass("gif");
 
                     // Adds gif and rating to gifDiv
@@ -98,20 +97,19 @@ $(document).ready(function () {
             });
     }
 
-    //On click for each gif
+    // On click for each gif
     $("#gif-section").on("click", ".gif", function () {
         var state = $(this).attr("data-state");
         console.log(state);
+
         // If current state is still
         if (state === "still") {
-            // Change still to an animated version of the gif
+            // Change still to an animated version of the gif, update state
             $(this).attr("src", $(this).attr("data-animate"));
-            // Change state to animate
             $(this).attr("data-state", "animate");
-        } else { // Else (current state is animate)
-            // Change animated gif to the still version of it
+        } else { // Else, current state is animate
+            // Change animated gif to the still version of it, update state
             $(this).attr("src", $(this).attr("data-still"));
-            // Change state to still
             $(this).attr("data-state", "still");
         }
     })
