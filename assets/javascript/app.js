@@ -3,6 +3,13 @@ $(document).ready(function () {
     // Create topics array
     var topics = ["happy", "sad", "sleepy", "hungry", "scared", "surprised", "disgusted", "confused", "bored"];
 
+    // Offset value used when user adds more gifs to page
+    var gifOffset = 0;
+
+    var queryURL;
+
+    // Current topic of gifs on the page
+    var currentTopic = "";
 
     function generateButtons() {
         // For loop iterating through array
@@ -22,14 +29,34 @@ $(document).ready(function () {
     $("#buttons").on("click", ".topic-button", function () {
 
         var topic = $(this).text();
-        console.log(topic);
+        currentTopic = topic;
+        gifOffset = 0;
+
+        $("#gif-section").empty();
 
         // Adds a border to the gif section
         $("#gif-section").css("border", "1px solid black");
 
+        // Adds instructions to the page for user guidance
+        var instructions = $("<p>").text("Click on a still to animate the gif, and click on it again to make it still!");
+        instructions.addClass("instructions col-12");
+        $("#gif-section").append(instructions);
+
+        // Adds button that allows user to add more gifs
+        var moreGifsDiv = $("<button>").addClass("btn btn-primary btn-sm add-gifs");
+        moreGifsDiv.text("Add more gifs, please!");
+        $("#gif-section").append(moreGifsDiv);
+
+        populateGifs(topic);
+
+    })
+
+    // Adds gifs to gif-section div
+    function populateGifs(topic) {
+        
         // creates url for query using topic variable
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            topic + "&api_key=ospFcerASWWtUhSsEHqEw0pDrhIYBujR&limit=10";
+        queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            topic + "&api_key=ospFcerASWWtUhSsEHqEw0pDrhIYBujR&limit=10&offset=" + gifOffset;
         $.ajax({ // AJAX call that sends request to queryURL
             url: queryURL,
             method: "GET"
@@ -37,6 +64,10 @@ $(document).ready(function () {
             .then(function (response) { // Once response is obtained, run this
                 var results = response.data; // Stores data obtained into results variable
                 console.log(results[0]);
+
+                var gifsDiv = $("<div>").addClass("row");
+                gifsDiv.attr("id", "gifs");
+
                 // Iterates through all results
                 for (var i = 0; i < results.length; i++) {
                     var gifDiv = $("<div>").addClass("gif-item");
@@ -56,10 +87,11 @@ $(document).ready(function () {
                     gifDiv.append(topicGif);
                     gifDiv.append(p);
 
-                    $("#gif-section").prepend(gifDiv); // Prepends gifDiv to beginning of gifs-appear-here div
+                    $(gifsDiv).append(gifDiv);
                 }
+                $("#gif-section").append(gifsDiv);
             });
-    })
+    }
 
     //On click for each gif
     $("#gif-section").on("click", ".gif", function () {
@@ -96,12 +128,15 @@ $(document).ready(function () {
         $("#new-topic").val("")
     })
 
+    // On click for button to add more gifs
+    $("#gif-section").on("click", ".add-gifs", function () {
+        gifOffset += 10;
+
+        populateGifs(currentTopic);
+    })
 })
 
 // BONUS
-// Fully mobile responsive (media queries?)
-// Allow users to request additional gifs
-    // Button to add more gifs if desired?
 // Add metadata for each gif (title, tags, etc)
 // Integrate search using additional APIs (OMDB, Bands in Town)
 // Allow users to add gifs to "favorites section"
