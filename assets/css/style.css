@@ -1,11 +1,16 @@
 body{
-    margin: auto;
-    padding: 2% 10%;
     background-image: url("../images/full-bloom.png");
+    font-family: 'Merriweather', serif;
+}
+
+h1{
+    font-family: 'Lora', serif;
+    font-weight: bold;
 }
 
 img{
     max-height: 150px;
+    width: auto;
 }
 
 .gif-item{
@@ -35,6 +40,10 @@ img{
     margin-bottom: 5px;
 }
 
+p{
+    text-align: center;
+}
+
 #gif-section{
     padding: 10px;
 }
@@ -46,4 +55,8 @@ img{
 
 #all-gifs{
     padding: 5px 15px;
+}
+
+.rating{
+    font-weight: bold;
 }

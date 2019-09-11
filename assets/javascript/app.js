@@ -77,6 +77,7 @@ $(document).ready(function () {
 
                     var rating = results[i].rating;
                     var p = $("<p>").text("Rating: " + rating);
+                    p.addClass("rating");
 
                     // New image element for gif; initially is still 
                     var topicGif = $("<img>");
