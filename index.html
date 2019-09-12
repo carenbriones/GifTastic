@@ -15,6 +15,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather&display=swap" rel="stylesheet">
@@ -28,14 +29,29 @@
         <div class="row">
 
             <div class="col-lg-3 mr-lg-2" id="left-column">
-                <div class="row"><h1>GifTastic!</h1></div>
-                <div class="row"><p>Click any of the following moods to add related gifs to the page!</p></div>
+                <div class="row">
+                    <h1>GifTastic!</h1>
+                </div>
+                <div class="row">
+                    <p>Click any of the following moods to add related gifs to the page!</p>
+                </div>
                 <div class="row" id="buttons"> </div>
                 <div class="input-group mb-3 add-topic row">
                     <div class="input-group-append">
                         <button class="btn btn-outline-primary" type="button" id="new-topic-button">Add Topic</button>
                     </div>
                     <input type="text" class="form-control" id="new-topic">
+                </div>
+                <div class="row" id="favorites-section">
+                    <div class="col-12">
+                        <h2>Favorites</h2>
+                    </div>
+                    <div class="col-12"><p>Click the "<i class="fa fa-heart"></i>" button under a gif to add it to your
+                        Favorites section!
+                    </p></div>
+                    <div class="col-12" id="favorite-gifs">
+
+                    </div>
                 </div>
             </div>
 

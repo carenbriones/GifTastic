@@ -7,3 +7,4 @@ The webpage is initially populated with buttons for different predetermined topi
 * User can input a new topic to use as a search query for gifs
 * User can click a topic button to populate the page with 10 related gifs
 * User can click a button to add additional gifs to the initial set of 10 gifs on the page
+* User can add gifs to their "Favorites" section

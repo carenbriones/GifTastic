@@ -8,6 +8,9 @@ $(document).ready(function () {
 
     var queryURL;
 
+    // Array for favorite gifs
+    var favoriteGifs = [];
+
     // Current topic of gifs on the page
     var currentTopic = "";
 
@@ -76,7 +79,7 @@ $(document).ready(function () {
                     var gifDiv = $("<div>").addClass("gif-item");
 
                     var rating = results[i].rating;
-                    var p = $("<p>").text("Rating: " + rating);
+                    var p = $("<p>").text("Rating: " + rating + "  ");
                     p.addClass("rating");
 
                     // New image element for gif; initially is still 
@@ -88,9 +91,14 @@ $(document).ready(function () {
                     topicGif.attr("alt", topic + " gif");
                     topicGif.addClass("gif");
 
+                    // New button to add gif to favorites
+                    var favoriteButton = $("<button>").addClass("btn btn-outline-primary favorite");
+                    favoriteButton.html("<i class=\"fa fa-heart\" aria-hidden=\"true\"></i>");
+
                     // Adds gif and rating to gifDiv
                     gifDiv.append(topicGif);
-                    gifDiv.append(p);
+                    gifDiv.append(p.append(favoriteButton));
+                    // gifDiv.append(favoriteButton);
 
                     // Prepends so user can see when additional gifs are added
                     $("#all-gifs").prepend(gifDiv);
@@ -102,17 +110,7 @@ $(document).ready(function () {
     $("#gif-section").on("click", ".gif", function () {
         var state = $(this).attr("data-state");
         console.log(state);
-
-        // If current state is still
-        if (state === "still") {
-            // Change still to an animated version of the gif, update state
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-        } else { // Else, current state is animate
-            // Change animated gif to the still version of it, update state
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
-        }
+        changeGifState(state, $(this));
     })
 
     // On click for add new topic button
@@ -138,6 +136,45 @@ $(document).ready(function () {
 
         populateGifs(currentTopic);
     })
+
+    // On click for favorite button
+    $("#gif-section").on("click", ".favorite", function(){
+        
+        favoriteGifs.push($(this).parent().parent().children("img")[0]);
+        $(this).parent().parent().empty();
+        console.log(favoriteGifs);
+        populateFavorites();
+    })
+
+    // Adds gifs to favorites section
+    function populateFavorites(){
+        $("#favorite-gifs").empty();
+
+        for (var i = 0; i < favoriteGifs.length; i++){
+            $("#favorite-gifs").append(favoriteGifs[i]);
+        }
+    }
+
+    // On click for gifs in favorites section
+    $("#favorites-section").on("click", "img", function(){
+        var state = $(this).attr("data-state");
+        console.log(state);
+        changeGifState(state, $(this));
+    })
+
+    // Changes image's state to opposite of what it currently is
+    function changeGifState(state, image){
+        // If current state is still
+        if (state === "still") {
+            // Change still to an animated version of the gif, update state
+            image.attr("src", image.attr("data-animate"));
+            image.attr("data-state", "animate");
+        } else { // Else, current state is animate
+            // Change animated gif to the still version of it, update state
+            image.attr("src", image.attr("data-still"));
+            image.attr("data-state", "still");
+        }
+    }
 })
 
 // BONUS
